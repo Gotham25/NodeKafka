@@ -172,10 +172,10 @@ app.get("/getKey", (req, res) => {
             res.status(400);
             res.send(getErrorMessage("Invalid MESSAGE_KEY_TOKEN specified"));
         } else {
-            mysqlConnection.query('CALL GenerateUniqueValue(\'USER_KEYS\', \'MESSAGE_KEY\')' , function(err, rows) {
+            mysqlConnection.query('CALL GenerateUniqueValue(\'user_keys\', \'MESSAGE_KEY\')' , function(err, rows) {
                 if(err) throw err;
                 let msgKey = rows[0][0].uniqueValue;
-                mysqlConnection.query('INSERT INTO `USER_KEYS` (`MESSAGE_KEY`) VALUES(\''+msgKey+'\')', function(insErr, insRows) {
+                mysqlConnection.query('INSERT INTO `user_keys` (`MESSAGE_KEY`) VALUES(\''+msgKey+'\')', function(insErr, insRows) {
                     if(insErr) throw insErr;
                     if(insRows.affectedRows === 1) {
                         res.send({
@@ -215,7 +215,7 @@ app.post("/lockKey", (req, res) => {
             res.send(getErrorMessage("key/status is blank or empty in request body"));
         } else {
 
-            mysqlConnection.query('SELECT * FROM `USER_KEYS` WHERE MESSAGE_KEY = \''+req.body.key+'\'' , function(err, rows) {
+            mysqlConnection.query('SELECT * FROM `user_keys` WHERE MESSAGE_KEY = \''+req.body.key+'\'' , function(err, rows) {
                 if(err) throw err;
                 if(rows.length === 0) {
                     res.send({
@@ -231,7 +231,7 @@ app.post("/lockKey", (req, res) => {
                             timestamp: getTimestamp()
                         });
                     } else {
-                        mysqlConnection.query('UPDATE `USER_KEYS` SET IS_LOCKED = true WHERE MESSAGE_KEY = \''+req.body.key+'\'' , function(updErr, updRows) {
+                        mysqlConnection.query('UPDATE `user_keys` SET IS_LOCKED = true WHERE MESSAGE_KEY = \''+req.body.key+'\'' , function(updErr, updRows) {
                             if(updErr) throw updErr;
                             if(updRows.affectedRows === 1) {
                                 res.send({

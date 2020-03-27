@@ -1,0 +1,22 @@
+{
+  "name": "nodekafka",
+  "version": "1.0.0",
+  "description": "NodeJS app microservice to produce and consume message to and from Kafka",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "kafka"
+  ],
+  "author": "Gowtham Alaguraj",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "kafkajs": "^1.12.0",
+    "mysql": "^2.18.1"
+  }
+}

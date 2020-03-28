@@ -1,9 +1,6 @@
 
 FROM node:slim
 
-RUN apk update && \
-    apk add --no-cache vim bash
-
 # Create app directory
 WORKDIR /usr/src/app
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer/Consumer code generator</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+</head>
+
+<body>
+
+    <div class="container" ng-app="keygenApp" ng-controller="keygenController">
+
+        <div id="userContainer">
+            <p class="h3">Click below to generate code</p>
+            <button id="generateCode" class="btn btn-primary" type="button" ng-click="generate($event)">Generate code</button>
+        </div>
+
+        <div class="mt-5" ng-show="showGeneratedCodeBlock">
+            <p class="h3">Click below to lock generated code</p>
+            <div class="input-group w-25">
+                <input type="text" id="generatedText" ng-value="generatedText" class="form-control" aria-describedby="button-addon2" readonly />
+                <div class="input-group-append">
+                    <button id="copyText" class="btn copyButton btn-outline-secondary" data-clipboard-target="input#generatedText" ata-clipboard-action="generatedText" type="button" id="button-addon2" data-toggle="tooltip" data-placement="top" title="Click to copy to clipboard"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-2" type="button" ng-click="lockKey($event)">Lock key</button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-primary mt-2" type="button" ng-click="clearKey($event)">Reset key</button>
+        </div>
+
+    </div>
+
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/popper.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    
+    <script src="js/fontawesome-all.min.js" type="text/javascript"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/clipboard.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+</body>
+
+</html>

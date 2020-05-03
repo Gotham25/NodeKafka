@@ -8,17 +8,10 @@ keygenApp.controller('keygenController', function($scope, $http) {
     $scope.sortType     = 'id'; // set the default sort type
     $scope.sortReverse  = false;  // set the default sort order
     $scope.searchRecord   = '';     // set the default search/filter term
-    $scope.isAuthenticated = true;
+    $scope.isAuthenticated = false;
     $scope.username = '';
     $scope.password = '';
-    //$scope.keygen = [];
-    $scope.keygen = [
-        { id: 3, messageKey: "g9OPtWe", isLocked: false, createdDate: "2020-03-27 16:51:32", updatedAt: "2020-03-27 17:52:38" },
-        { id: 4, messageKey: "hCORJwS", isLocked: false, createdDate: "2020-03-27 18:51:32", updatedAt: "2020-03-27 19:52:38" },
-        { id: 1, messageKey: "CMwNQl3", isLocked: false, createdDate: "2020-03-27 20:51:32", updatedAt: "2020-03-27 21:52:38" },
-        { id: 5, messageKey: "vUeEBHA", isLocked: false, createdDate: "2020-03-27 22:51:32", updatedAt: "2020-03-27 23:52:38" },
-        { id: 2, messageKey: "eP7glhP", isLocked: false, createdDate: "2020-03-27 15:51:32", updatedAt: "2020-03-27 14:52:38" }
-    ];
+    $scope.keygen = [];
 
     //visibility modes
     $scope.headerIdVisibility = false;

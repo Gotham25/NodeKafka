@@ -1,5 +1,6 @@
 
 const express = require("express");
+const http = require('http');
 const bodyParser = require("body-parser");
 const crypto = require("crypto");
 const path = require("path");
@@ -41,6 +42,8 @@ expressApp.use((err, req, res, next) => {
 });
 
 expressApp.get("/status", (req, res) => {
+    console.log(Date.now() + " Ping Received");
+    res.status(200);
     res.send({
         status: "UP",
         timestamp: getTimestamp()
@@ -419,6 +422,15 @@ expressApp.post("/fetchUserKeys", (req, res) => {
 
 const expressServer = expressApp.listen(SERVER_PORT, () => {
     log("Listening on port " + SERVER_PORT);
+    setInterval(() => {
+        let pDomain = process.env.PROJECT_DOMAIN;
+        if( pDomain === '' || pDomain === undefined || pDomain === null) {
+            http.get(`http://localhost:2573/status`);
+        }else{
+            http.get(`http://${pDomain}.glitch.me/status`);
+        }
+        
+    }, 180000);
 });
 
 function getTimestamp() {

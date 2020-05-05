@@ -42,7 +42,7 @@ expressApp.use((err, req, res, next) => {
 });
 
 expressApp.get("/status", (req, res) => {
-    console.log(Date.now() + " Ping Received");
+    log(new Date()+"\tPing Received");
     res.status(200);
     res.send({
         status: "UP",
@@ -402,7 +402,6 @@ expressApp.post("/fetchUserKeys", (req, res) => {
                             "createdDate": row.CREATED_AT,
                             "updatedAt": row.UPDATED_AT
                         };
-                        console.log(userKey);
                         userKeys.push(userKey);
                     });
 
@@ -446,7 +445,7 @@ function getErrorMessage(message) {
 
 function terminateServer() {
     expressServer.close();
-    console.log('Nodejs Express server stopped...');
+    log("Nodejs Express server stopped...");
 }
 
 process.on('SIGTERM', () => {
@@ -469,6 +468,6 @@ process.on('SIGINT', function() {
     kakfaService.consumer.disconnect();
     redisClient.end(true);
     log( "\nRedis DB connection terminated..." );
-    console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
+    log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
     process.exit(1);
 });
